@@ -60,6 +60,7 @@ class WelcomeTest {
 	@Test
 	void ex9() {
 		assertEquals(Welcome.welcome("bob, JERRY, amy, bob, JERRY, bob"),"Hello, Bob (x3) and Amy. AND HELLO, JERRY (x2) !");
+		assertEquals(Welcome.welcome("bob, JERRY, amy, bob, JERRY, bob,amy"),"Hello, Bob (x3) and Amy (x2). AND HELLO, JERRY (x2) !");
 		assertEquals(Welcome.welcome("ra,ra,ra,ra"),"Hello, Ra (x4).");
 		assertEquals(Welcome.welcome("SA,SA,SA,SA,SA"),"HELLO, SA (x5) !");
 	}

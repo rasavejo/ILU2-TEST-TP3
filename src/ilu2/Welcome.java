@@ -9,9 +9,28 @@ public class Welcome {
 		return -1;
 	}
 	
+	private static String affichageFinal(StringBuilder minuscule,StringBuilder majuscule,boolean yodaMin,boolean yodaMaj) {
+		StringBuilder chaine = new StringBuilder();
+		if (!minuscule.isEmpty()) {
+			if (yodaMin)
+				chaine.append(minuscule.substring(2) + ", Hello.");
+			else
+				chaine.append("Hello" + minuscule + ".");
+				
+		}
+		if (!majuscule.isEmpty()) {
+			if (!minuscule.isEmpty()) chaine.append(" AND ");
+			if (yodaMaj)
+				chaine.append(majuscule.substring(2) + ", HELLO !");
+			else
+				chaine.append("HELLO" + majuscule + " !");
+		}
+		return chaine.toString();
+	}
+	
 	private static String affichage(String[] liste,int[] count) {
 		
-		StringBuilder chaine = new StringBuilder(),majuscule = new StringBuilder(),minuscule = new StringBuilder();
+		StringBuilder majuscule = new StringBuilder(),minuscule = new StringBuilder();
 		String dernierMaj = "",dernierMin = "";
 
 		boolean yodaMaj = false,yodaMin = false;
@@ -31,30 +50,14 @@ public class Welcome {
 			}
 		}
 		
-		int decMaj = (!dernierMaj.isEmpty() && count[index(liste,dernierMaj)] > 1 ? 7 : 0);
-		int decMin = (!dernierMin.isEmpty() && count[index(liste,dernierMin)] > 1 ? 7 : 0);
+		int decMaj = (!dernierMaj.isEmpty() && count[index(liste,dernierMaj)] > 1 ? 5 : 0);
+		int decMin = (!dernierMin.isEmpty() && count[index(liste,dernierMin)] > 1 ? 5 : 0);
 		
 		
-		if (!majuscule.isEmpty() && !Objects.equals(majuscule.toString().substring(0,dernierMaj.length() + 2), ", " + dernierMaj)) majuscule.replace(majuscule.length()-dernierMaj.length()-2-decMaj, majuscule.length()-dernierMaj.length()-decMaj, " AND ");
-		if (!minuscule.isEmpty() && !Objects.equals(minuscule.toString().substring(0,dernierMin.length() + 2), ", " + dernierMin)) minuscule.replace(minuscule.length()-dernierMin.length()-2-decMin, minuscule.length()-dernierMin.length()-decMin, " and ");
+		if (!majuscule.isEmpty() && !Objects.equals(majuscule.substring(0,dernierMaj.length() + 2), ", " + dernierMaj)) majuscule.replace(majuscule.length()-dernierMaj.length()-2-decMaj, majuscule.length()-dernierMaj.length()-decMaj, " AND ");
+		if (!minuscule.isEmpty() && !Objects.equals(minuscule.substring(0,dernierMin.length() + 2), ", " + dernierMin)) minuscule.replace(minuscule.length()-dernierMin.length()-2-decMin, minuscule.length()-dernierMin.length()-decMin, " and ");
 
-		
-		if (!minuscule.isEmpty()) {
-			if (yodaMin)
-				chaine.append(minuscule.substring(2) + ", Hello.");
-			else
-				chaine.append("Hello" + minuscule + ".");
-				
-		}
-		
-		if (!majuscule.isEmpty()) {
-			if (!minuscule.isEmpty()) chaine.append(" AND ");
-			if (yodaMaj)
-				chaine.append(majuscule.substring(2) + ", HELLO !");
-			else
-				chaine.append("HELLO" + majuscule + " !");
-		}
-		return chaine.toString();
+		return affichageFinal(minuscule, majuscule, yodaMin, yodaMaj);
 	}
 	
 	public static String welcome(String input) {
