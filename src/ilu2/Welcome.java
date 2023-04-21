@@ -14,14 +14,17 @@ public class Welcome {
 		StringBuilder chaine = new StringBuilder(),majuscule = new StringBuilder(),minuscule = new StringBuilder();
 		String dernierMaj = "",dernierMin = "";
 
+		boolean yodaMaj = false,yodaMin = false;
 		
 		for (int i = 0;i<liste.length; i++) {
 			if (liste[i] != null) {
 				if (Objects.equals(liste[i].toUpperCase(), liste[i])) {
+					yodaMaj = yodaMaj ||("YODA".equals(liste[i]));
 					majuscule.append(", " + (dernierMaj = liste[i]));
 					if (count[i] > 1) majuscule.append(" (x" + count[i] + ")");
 				}
 				else {
+					yodaMin = yodaMin || ("Yoda".equals(liste[i]));
 					minuscule.append(", " + (dernierMin = liste[i].substring(0, 1).toUpperCase() + liste[i].substring(1)));
 					if (count[i] > 1) minuscule.append(" (x" + count[i] + ")");
 				}
@@ -36,12 +39,20 @@ public class Welcome {
 		if (!minuscule.isEmpty() && !Objects.equals(minuscule.toString().substring(0,dernierMin.length() + 2), ", " + dernierMin)) minuscule.replace(minuscule.length()-dernierMin.length()-2-decMin, minuscule.length()-dernierMin.length()-decMin, " and ");
 
 		
-		if (!minuscule.isEmpty())
-			chaine.append("Hello" + minuscule + ".");
+		if (!minuscule.isEmpty()) {
+			if (yodaMin)
+				chaine.append(minuscule.substring(2) + ", Hello.");
+			else
+				chaine.append("Hello" + minuscule + ".");
+				
+		}
 		
 		if (!majuscule.isEmpty()) {
 			if (!minuscule.isEmpty()) chaine.append(" AND ");
-			chaine.append("HELLO" + majuscule + " !");
+			if (yodaMaj)
+				chaine.append(majuscule.substring(2) + ", HELLO !");
+			else
+				chaine.append("HELLO" + majuscule + " !");
 		}
 		return chaine.toString();
 	}
