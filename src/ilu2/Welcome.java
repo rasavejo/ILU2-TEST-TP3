@@ -12,22 +12,18 @@ public class Welcome {
 		
 		String[] liste = input.split(",");
 		
-		if (!Objects.equals(liste[0], input)) {
-			chaine.append("Hello, ");
-			chaine.append(liste[0].substring(0, 1).toUpperCase() + liste[0].substring(1));
-			chaine.append(", ");
-			chaine.append(liste[1].substring(0, 1).toUpperCase() + liste[1].substring(1));
-		}
-		
-		else if (Objects.equals(input, input.toUpperCase())) {
+
+		if (Objects.equals(input, input.toUpperCase())) {
 			chaine.append("HELLO, ");
 			chaine.append(input);
 			chaine.append(" !");
 		}
 		else {
 			chaine.append("Hello, ");
-			input = input.substring(0, 1).toUpperCase() + input.substring(1);
-			chaine.append(input);
+			for (int i = 0; i < liste.length;i++) {
+				chaine.append(liste[i].substring(0, 1).toUpperCase() + liste[i].substring(1));
+				if (i<liste.length -1) chaine.append(", ");
+			}
 		}
 		return chaine.toString();
 	}
