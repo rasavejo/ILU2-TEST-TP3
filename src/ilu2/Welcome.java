@@ -6,8 +6,20 @@ public class Welcome {
 	
 	public static String welcome(String input) {
 		if (input == null || input.trim().isEmpty()) return "Hello, my friend";
+		
+		
 		StringBuilder chaine = new StringBuilder();
-		if (Objects.equals(input, input.toUpperCase())) {
+		
+		String[] liste = input.split(",");
+		
+		if (!Objects.equals(liste[0], input)) {
+			chaine.append("Hello, ");
+			chaine.append(liste[0].substring(0, 1).toUpperCase() + liste[0].substring(1));
+			chaine.append(", ");
+			chaine.append(liste[1].substring(0, 1).toUpperCase() + liste[1].substring(1));
+		}
+		
+		else if (Objects.equals(input, input.toUpperCase())) {
 			chaine.append("HELLO, ");
 			chaine.append(input);
 			chaine.append(" !");
