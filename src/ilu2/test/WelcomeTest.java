@@ -9,8 +9,8 @@ class WelcomeTest {
 
 	@Test
 	void ex1() {
-		assertEquals(Welcome.welcome("bob"),"Hello, Bob");
-		assertEquals(Welcome.welcome("rasa"),"Hello, Rasa");
+		assertEquals(Welcome.welcome("bob"),"Hello, Bob.");
+		assertEquals(Welcome.welcome("rasa"),"Hello, Rasa.");
 	}
 	
 	@Test
@@ -28,14 +28,21 @@ class WelcomeTest {
 	
 	@Test
 	void ex4() {
-		assertEquals(Welcome.welcome("amy,bob"),"Hello, Amy, Bob");
-		assertEquals(Welcome.welcome("rasa,vejo"), "Hello, Rasa, Vejo");
+		assertEquals(Welcome.welcome("amy,bob"),"Hello, Amy, Bob.");
+		assertEquals(Welcome.welcome("rasa,vejo"), "Hello, Rasa, Vejo.");
 	}
 	
 	@Test
 	void ex5() {
-		assertEquals(Welcome.welcome("Amy,bob,jerry"), "Hello, Amy, Bob, Jerry");
-		assertEquals(Welcome.welcome("ra,sa,ve,jo"),"Hello, Ra, Sa, Ve, Jo");
+		assertEquals(Welcome.welcome("Amy,bob,jerry"), "Hello, Amy, Bob, Jerry.");
+		assertEquals(Welcome.welcome("ra,sa,ve,jo"),"Hello, Ra, Sa, Ve, Jo.");
+	}
+	
+	@Test
+	void ex6() {
+		assertEquals(Welcome.welcome("Amy,BOB,jerry"), "Hello, Amy, Jerry. AND HELLO, BOB !");
+		assertEquals(Welcome.welcome("ra,VE,sa,JO"),"Hello, Ra, Sa. AND HELLO, VE, JO !");
+		assertEquals(Welcome.welcome("RA,PHA,EL"), "HELLO, RA, PHA, EL !");
 	}
 
 }

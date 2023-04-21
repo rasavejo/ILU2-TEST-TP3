@@ -9,22 +9,28 @@ public class Welcome {
 		
 		
 		StringBuilder chaine = new StringBuilder();
+		StringBuilder minuscule = new StringBuilder();
+		StringBuilder majuscule = new StringBuilder();
 		
 		String[] liste = input.split(",");
 		
-
-		if (Objects.equals(input, input.toUpperCase())) {
-			chaine.append("HELLO, ");
-			chaine.append(input);
-			chaine.append(" !");
+		
+		for (int i = 0;i<liste.length; i++) {
+			if (Objects.equals(liste[i].toUpperCase(), liste[i])) 
+				majuscule.append(", " + liste[i]);
+			else 
+				minuscule.append(", " + liste[i].substring(0, 1).toUpperCase() + liste[i].substring(1));
 		}
-		else {
-			chaine.append("Hello, ");
-			for (int i = 0; i < liste.length;i++) {
-				chaine.append(liste[i].substring(0, 1).toUpperCase() + liste[i].substring(1));
-				if (i<liste.length -1) chaine.append(", ");
-			}
+		
+		if (!minuscule.isEmpty())
+			chaine.append("Hello" + minuscule + ".");
+		
+		if (!majuscule.isEmpty()) {
+			if (!minuscule.isEmpty()) chaine.append(" AND ");
+			chaine.append("HELLO" + majuscule + " !");
 		}
+		
+		
 		return chaine.toString();
 	}
 
