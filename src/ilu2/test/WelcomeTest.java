@@ -50,5 +50,11 @@ class WelcomeTest {
 		assertEquals(Welcome.welcome("Amy,bob,jerry"), "Hello, Amy, Bob and Jerry.");
 		assertEquals(Welcome.welcome("bob,AMY,jerry,JACK"), "Hello, Bob and Jerry. AND HELLO, AMY AND JACK !");
 	}
+	
+	@Test
+	void ex8() {
+		assertEquals(Welcome.welcome("bob      ,amy    "),"Hello, Bob and Amy.");
+		assertEquals(Welcome.welcome("      RA,PHA,EL  "), "HELLO, RA, PHA AND EL !");
+	}
 
 }

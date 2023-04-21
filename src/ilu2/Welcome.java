@@ -18,6 +18,7 @@ public class Welcome {
 		String dernierMaj = "",dernierMin = "";
 		
 		for (i = 0;i<liste.length; i++) {
+			liste[i] = liste[i].trim();
 			if (Objects.equals(liste[i].toUpperCase(), liste[i])) 
 				majuscule.append(", " + (dernierMaj = liste[i]));
 			else 
